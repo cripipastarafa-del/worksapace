@@ -51,7 +51,8 @@ const api = require('./server.js');
 app.use(helmet.hidePoweredBy());
 app.use(helmet.frameguard({action: 'deny'}));
 app.disable('strict-transport-security');
-app.use(helmet.xssFilter({}));
+app.use(helmet.xssFilter());
+app.use(helmet.noSniff())
 app.use('/_api', api);
 app.get("/", function (request, response) {
   response.sendFile(__dirname + '/views/index.html');
